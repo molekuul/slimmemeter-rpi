@@ -11,12 +11,12 @@ Gegevens uitlezen en vullen met p1uitlezerdb.py
 
 sciptjes zijn gebaseerd op het feit dat de user een .my.cnf in de homedir heeft met de volgende info:
 
-[client]
-user=root
-password=Supermoelijkwachtwoord123
-[mysqldump]
-user=root
-password=Supermoelijkwachtwoord123
+	[client]
+	user=root
+	password=Supermoelijkwachtwoord123
+	[mysqldump]
+	user=root
+	password=Supermoelijkwachtwoord123
 
 
 elke twee minuten uitvoeren via de crontab
