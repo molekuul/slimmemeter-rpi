@@ -33,6 +33,8 @@ http://gejanssen.com/howto/rpi-rrd-power/index.html
 	0-0:96.1.1(204B413655303031363630323937393132)
 	gej@raspberrypi(gej): ~/slimmemeter-rpi $ 
 
+Mocht de telegram meer of juist minder dan 20 regels bevatten, dan even aanpassen natuurlijk.
+
 ## Daarna kijken of we de telegram kunnen uitlezen en verwerken
 
 	gej@raspberrypi(gej): ~/slimmemeter-rpi $ python P1uitlezer.py 
@@ -48,13 +50,20 @@ http://gejanssen.com/howto/rpi-rrd-power/index.html
 	Gas                      4083631  dm3
 	gej@raspberrypi(gej): ~/slimmemeter-rpi $ 
 
+Vooral de nieuwe meters hebben een andere snelheid. Dit kun je aan het begin van het script natuurlijk aanpassen.
+
 ## Automagiseren met de crontab
 
 	*/5 * * * *     /root/Script/uitlezen.sh
 
-# 1 keer per 5 minuten, uitlezen via seriele interface van de slimme meter
-	su - gej -c "python /home/gej/P1uitlezer.py > /home/gej/P1uitlezer.txt" 2>&1 >/dev/null
+En in het script staat
 
+	# 1 keer per 5 minuten, uitlezen via seriele interface van de slimme meter
+	su - gej -c "python /home/gej/P1uitlezer.py > /home/gej/P1uitlezer.txt" 2>&1 >/dev/null
+verderop in het script moet je dus die P1uitlezer gebruiken met grep en zo.
+
+## html pagina's
+In html staan de pagina's om de scripts via een website uit te lezen (apache, met php)
 
 ## fase 2 rrdpower
 
