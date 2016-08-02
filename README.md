@@ -70,10 +70,11 @@ In html staan de pagina's om de scripts via een website uit te lezen (apache, me
 Als dit allemaal werkt kun je dit in automatisch uitlezen en in de rrd database zetten.
 Vervolgens dan nog even de plaatjes genereren, en je hebt een grafische interpretatie van je stroomverbruik.
 
-zie verder in rrdpower.
+zie verder in de rrdpower dir.
 
 ## Fase 3 mysql
 
 Gebruik van een database voor de opslag van de gegevens.
 
-zie p1db.
+zie de p1db folder.
+
