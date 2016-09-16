@@ -1,5 +1,10 @@
 ## rrd database voor de power verbruik zichtbaar te maken.
 
+Install rrdtool
+
+```
+	$ sudo apt install -y rrdtool
+```
 
 create_rrd_db.sh
 
