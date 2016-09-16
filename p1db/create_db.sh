@@ -1,1 +1,1 @@
-mysql --user=root --password=Database123 p1db < create_table_p1db.sql
+mysql --user=root --password=SupermoeilijkWW123 < create_table_p1db.sql
