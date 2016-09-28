@@ -5,9 +5,12 @@ http://gejanssen.com/howto/Slimme-meter-uitlezen/index.html
 en
 http://gejanssen.com/howto/rpi-rrd-power/index.html
 
+09-2016 iemand die ik ken heeft een DSMR 4.2 meter gekregen, dus heb ik alles geupdate naar een DSMR 2 en een DSMR 4 versie.
+De scriptjes hebben dus een nieuwe naam.
+
 ## Eerst even kijken of we serieel uit kunnen lezen
 
-	gej@raspberrypi(gej): ~/slimmemeter-rpi $ python P1uitlezen.py 
+	gej@raspberrypi(gej): ~/slimmemeter-rpi $ python P1uitlezen-DSM22.py 
 	('DSMR P1 uitlezen', '1.0')
 	Control-C om te stoppen
 	Pas eventueel de waarde ser.port aan in het python script
@@ -37,7 +40,7 @@ Mocht de telegram meer of juist minder dan 20 regels bevatten, dan even aanpasse
 
 ## Daarna kijken of we de telegram kunnen uitlezen en verwerken
 
-	gej@raspberrypi(gej): ~/slimmemeter-rpi $ python P1uitlezer.py 
+	gej@raspberrypi(gej): ~/slimmemeter-rpi $ python P1uitlezer-DSMR22.py 
 	('DSMR P1 uitlezer', '1.0')
 	Control-C om te stoppen
 	daldag       07041
@@ -51,6 +54,7 @@ Mocht de telegram meer of juist minder dan 20 regels bevatten, dan even aanpasse
 	gej@raspberrypi(gej): ~/slimmemeter-rpi $ 
 
 Vooral de nieuwe meters hebben een andere snelheid. Dit kun je aan het begin van het script natuurlijk aanpassen.
+Ook de hoeveelheid regels die van een telegram af komen kunnen verschillend zijn. In mijn geval 20 regels.
 
 ## Automagiseren met de crontab
 
