@@ -15,7 +15,12 @@
 <body>
   <div style="width: 800px; margin-left: 100px;" >
     <h2>RPi slimme meter - power usage</h2>
-    <i>Last Modified: <?=$lastmod?></i>
+<?php
+    $filename = 'power_daily.png';
+    if (file_exists($filename)) {
+       echo "$filename was last modified: " . date ("F d Y H:i:s.", filemtime($filename));
+    }
+?>
      
     <h3>Daily</h3>
     <img src="power_daily.png" />

@@ -1,9 +1,9 @@
 #
-# DSMR P1 uitlezer
+# DSMR  4.2 P1 uitlezer
 # (c) 10-2012 - GJ - gratis te kopieren en te plakken
-# (c) 12-2015 - GJ Database versie
+# (c) 12-2015 / 2016 - GJ Database versie
 
-versie = "2.0"
+versie = "2.1"
 import sys
 import serial
 import time
@@ -78,7 +78,7 @@ def printValues(T1afgenomen, T2afgenomen, T1terug, T2terug, Tarief, Afgenomenver
   print "dalterug    ", T1terug
 #	print "meter totaal  ", meter
   print "piekterug   ", T2terug
-  print "meter totaal ", meter, " (afgenomen/teruggeleverd van het net vanaf 17-10-2014)"
+  print "meter totaal ", meter, " (afgenomen/teruggeleverd van het net vanaf 01-09-2016)"
   print "Afgenomen vermogen      ", Afgenomenvermogen, " W"
   print "Teruggeleverd vermogen  ", Teruggeleverdvermogen, " W"
   print "Totaal vermogen         ", Totaalvermogen, " W"
@@ -89,13 +89,13 @@ def printValues(T1afgenomen, T2afgenomen, T1terug, T2terug, Tarief, Afgenomenver
 ################################################################################################################################################
 #Main program
 ################################################################################################################################################
-print ("DSMR P1 uitlezer",  versie)
+print ("DSMR 4.2 P1 uitlezer",  versie)
 print ("Gemiddelde telegram uitlezen duurt 10 seconden")
 print ("Control-C om te stoppen")
 
 #Set COM port config
 ser = serial.Serial()
-ser.baudrate = 9600
+ser.baudrate = 115200
 ser.bytesize=serial.SEVENBITS
 ser.parity=serial.PARITY_EVEN
 ser.stopbits=serial.STOPBITS_ONE
@@ -115,7 +115,7 @@ timestamp = int(time.time()/100)*100
 
 
 #Initialize
-# stack is mijn list met de 20 regeltjes.
+# stack is mijn list met de 36 regeltjes.
 p1_teller=0
 stack=[]
 T1afgenomen = 0
@@ -128,7 +128,7 @@ Afgenomenvermogen = 0
 Teruggeleverdvermogen = 0
 Totaalvermogen = 0
 
-while p1_teller < 20:
+while p1_teller < 36:
     p1_line=''
 #Read 1 line
     try:
@@ -144,49 +144,49 @@ while p1_teller < 20:
     p1_teller = p1_teller +1
 
 #Initialize
-# stack_teller is mijn tellertje voor de 20 weer door te lopen. Waarschijnlijk mag ik die p1_teller ook gebruiken
+# stack_teller is mijn tellertje voor de 36 weer door te lopen. Waarschijnlijk mag ik die p1_teller ook gebruiken
 stack_teller=0
 meter=0
 
-while stack_teller < 20:
+while stack_teller < 36:
    if stack[stack_teller][0:9] == "1-0:1.8.1":
-	T1afgenomen = int(stack[stack_teller][10:15])
+	T1afgenomen = int(stack[stack_teller][10:16])
 # 	Alleen voor debug
 #	print "daldag      ", T1afgenomen
-	meter = meter +  int(float(stack[stack_teller][10:15]))
+	meter = meter +  int(float(stack[stack_teller][10:16]))
    elif stack[stack_teller][0:9] == "1-0:1.8.2":
-	T2afgenomen = int(stack[stack_teller][10:15])
+	T2afgenomen = int(stack[stack_teller][10:16])
 # 	Alleen voor debug
 #	print "piekdag     ", T2afgenomen
-	meter = meter + int(float(stack[stack_teller][10:15]))
+	meter = meter + int(float(stack[stack_teller][10:16]))
 # 	Alleen voor debug
 #	print "meter totaal  ", meter
 # Daltarief, teruggeleverd vermogen 1-0:2.8.1
    elif stack[stack_teller][0:9] == "1-0:2.8.1":
-	T1terug = int(stack[stack_teller][10:15])
+	T1terug = int(stack[stack_teller][10:16])
 # 	Alleen voor debug
 #	print "dalterug    ", T1terug
-	meter = meter - int(float(stack[stack_teller][10:15]))
+	meter = meter - int(float(stack[stack_teller][10:16]))
 # 	Alleen voor debug
 #	print "meter totaal  ", meter
 # Piek tarief, teruggeleverd vermogen 1-0:2.8.2
    elif stack[stack_teller][0:9] == "1-0:2.8.2":
-	T2terug = int(stack[stack_teller][10:15])
+	T2terug = int(stack[stack_teller][10:16])
 # 	Alleen voor debug
 #        print "piekterug   ", T2terug
-        meter = meter - int(float(stack[stack_teller][10:15]))
+        meter = meter - int(float(stack[stack_teller][10:16]))
 # mijn verbruik was op 17-10-2014 1751 kWh teveel teruggeleverd. Nieuw jaar dus opnieuw gaan rekenen
-	meter = meter + 1751
+#	meter = meter + 1751
 # 	Alleen voor debug
 #        print "meter totaal ", meter, " (afgenomen/teruggeleverd van het net vanaf 17-10-2014)"
 # Huidige stroomafname: 1-0:1.7.0
    elif stack[stack_teller][0:9] == "1-0:1.7.0":
-	Afgenomenvermogen = int(float(stack[stack_teller][10:17])*1000)
+	Afgenomenvermogen = int(float(stack[stack_teller][10:16])*1000)
 # 	Alleen voor debug
 #        print "Afgenomen vermogen      ", Afgenomenvermogen, " W"
 # Huidig teruggeleverd vermogen: 1-0:1.7.0
    elif stack[stack_teller][0:9] == "1-0:2.7.0":
-	Teruggeleverdvermogen = int(float(stack[stack_teller][10:17])*1000)
+	Teruggeleverdvermogen = int(float(stack[stack_teller][10:16])*1000)
 # 	Alleen voor debug
 #        print "Teruggeleverd vermogen  ", Teruggeleverdvermogen, " W"
 	Totaalvermogen = Afgenomenvermogen - Teruggeleverdvermogen
@@ -197,8 +197,8 @@ while stack_teller < 20:
 	Tarief = int(stack[stack_teller][12:16])
 #	print "Tarief (1=hoog 2=laag)  ", Tarief
 # Gasmeter: 0-1:24.3.0
-   elif stack[stack_teller][0:10] == "0-1:24.3.0":
-	Gas = int(float(stack[stack_teller+1][1:10])*1000)
+   elif stack[stack_teller][0:10] == "0-1:24.2.1":
+	Gas = int(float(stack[stack_teller][26:35])*1000)
 #        print "Gas                     ", Gas, " dm3"
    else:
 	pass
@@ -217,7 +217,7 @@ except:
 if (Gas>0):
 #######################################################################################################################################
 # 	Alleen voor debug
-#  printValues(T1afgenomen, T2afgenomen, T1terug, T2terug, Tarief, Afgenomenvermogen, Teruggeleverdvermogen, Totaalvermogen, Gas)
+  printValues(T1afgenomen, T2afgenomen, T1terug, T2terug, Tarief, Afgenomenvermogen, Teruggeleverdvermogen, Totaalvermogen, Gas)
 #######################################################################################################################################
   insertDB(T1afgenomen, T2afgenomen, T1terug, T2terug, Tarief, Afgenomenvermogen, Teruggeleverdvermogen, Totaalvermogen, Gas)
   print ("Database gevuld")
