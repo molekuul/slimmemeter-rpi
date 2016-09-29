@@ -54,3 +54,11 @@ Helaas, geen mysql module binnen python, even installeren.
 root@rpi-backup:/home/gej/slimmemeter-rpi/p1db# sudo apt install python-mysqldb
 ...
 ```
+## Mysql - PHP
+
+Install php-mysql
+
+```
+	gej@rpib2:~# sudo pt install php5-mysql
+```
+
