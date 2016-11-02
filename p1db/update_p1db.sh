@@ -1,4 +1,4 @@
-/usr/bin/python /home/gej/p1db/p1uitlezerdb.py
+/usr/bin/python /home/gej/slimmemeter-rpi/p1db/p1uitlezerdb-DSMR22.py
 
 
 
