@@ -59,6 +59,6 @@ root@rpi-backup:/home/gej/slimmemeter-rpi/p1db# sudo apt install python-mysqldb
 Install php-mysql
 
 ```
-	gej@rpib2:~# sudo pt install php5-mysql
+	gej@rpib2:~# sudo apt install php5-mysql
 ```
 
