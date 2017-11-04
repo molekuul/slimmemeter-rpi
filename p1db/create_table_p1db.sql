@@ -2,7 +2,7 @@ CREATE DATABASE IF NOT EXISTS p1db;
 use p1db;
 
 DROP TABLE IF EXISTS `P1uitlezen`;
-#(even kijken of ik de databse kan vullen met default now())
+#(even kijken of ik de database kan vullen met default now())
 CREATE TABLE P1uitlezen (
 ID INT NOT NULL AUTO_INCREMENT,
 `date` date NOT NULL,
