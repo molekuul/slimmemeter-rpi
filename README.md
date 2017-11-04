@@ -19,6 +19,7 @@ Zet de rechten van de seriele poort open. (pi is de user die toegevoegd wordt aa
 
 ```
 gej@rpi-backup:~/slimmemeter-rpi $ sudo usermod -a -G dialout www-data pi
+```
 
 09-2016 iemand die ik ken heeft een DSMR 4.2 meter gekregen, dus heb ik alles geupdate naar een DSMR 2 en een DSMR 4 versie.
 De scriptjes hebben dus een nieuwe naam.
