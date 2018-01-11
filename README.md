@@ -138,7 +138,7 @@ gej@raspberrypi(gej): ~/slimmemeter-rpi $
 Vooral de nieuwe meters hebben een andere snelheid. Dit kun je aan het begin van het script natuurlijk aanpassen.
 Ook de hoeveelheid regels die van een telegram af komen kunnen verschillend zijn. In mijn geval 20 regels.
 
-## Automagiseren met de crontab
+## Automatiseren met de crontab
 
 ```
 */5 * * * *     /root/Script/uitlezen.sh
